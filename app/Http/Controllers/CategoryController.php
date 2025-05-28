@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Category\BaseRequest;
 use App\Http\Requests\Category\DeleteRequest;
-use App\Http\Requests\Category\StoreRequest;
 use App\Models\Category;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -24,7 +23,7 @@ class CategoryController extends Controller
         return Inertia::render('Category/Create');
     }
 
-    public function store(StoreRequest $request): RedirectResponse
+    public function store(BaseRequest $request): RedirectResponse
     {
         Category::create($request->validated());
 
@@ -35,6 +34,6 @@ class CategoryController extends Controller
     {
         Category::where('id', $request->validated(['id']))->delete();
 
-        return to_route('categories.index')->with('success', 'Категория создана успешно');
+        return to_route('categories.index')->with('success', 'Категория удалена успешно');
     }
 }
