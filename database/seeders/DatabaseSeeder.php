@@ -20,8 +20,9 @@ class DatabaseSeeder extends Seeder
             'password' => 'secret'
         ]);
 
-        foreach (['легкий', 'хрупкий', 'тяжелый'] as $category_name) {
-            Category::create(['name' => $category_name]);
-        }
+        $this->call([
+            CategorySeeder::class,
+            ProductSeeder::class
+        ]);
     }
 }
