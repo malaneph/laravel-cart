@@ -36,9 +36,10 @@ class Order extends Model
         $sum = 0;
 
         foreach ($order->items as $item) {
-            $sum += $item->product->price * $item->amount;
+
+            $sum += $item->product->price * 100 * $item->amount;
         }
 
-        return $sum;
+        return $sum / 100;
     }
 }
