@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
@@ -36,13 +37,27 @@ Route::middleware('auth')->group(function () {
         Route::get('/', 'index')->name('products.index');
 
         Route::get('/create', 'create')->name('products.create');
-        Route::post('/create', 'store')->name('products.store');
+        Route::post('/store', 'store')->name('products.store');
 
         Route::prefix('/{product}')->group(function () {
             Route::get('/edit', 'edit')->name('products.edit');
             Route::post('/update', 'update')->name('products.update');
 
             Route::post('/delete', 'delete')->name('products.delete');
+        });
+    });
+
+    Route::prefix('/orders')->controller(OrderController::class)->group(function () {
+        Route::get('/', 'index')->name('orders.index');
+
+        Route::get('/create', 'create')->name('orders.create');
+        Route::post('/store', 'store')->name('orders.store');
+
+        Route::prefix('/{order}')->group(function () {
+            Route::get('/edit', 'edit')->name('orders.edit');
+            Route::post('/update', 'update')->name('orders.update');
+
+            Route::post('/delete', 'delete')->name('orders.delete');
         });
     });
 });
