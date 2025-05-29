@@ -4,7 +4,6 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
-use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -20,7 +19,7 @@ Route::middleware('auth')->group(function () {
     Route::prefix('/categories')->controller(CategoryController::class)->group(function () {
         Route::get('/', 'index')->name('categories.index');
         Route::get('/create', 'create')->name('categories.create');
-        Route::post('/create', 'store')->name('categories.store');
+        Route::post('/store', 'store')->name('categories.store');
         Route::post('/delete', 'delete')->name('categories.delete');
     });
 
