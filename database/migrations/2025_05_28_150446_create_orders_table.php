@@ -23,7 +23,7 @@ return new class extends Migration {
             $table->id();
             $table->string('customer');
             $table->integer('status');
-            $table->string('customer_comment');
+            $table->text('customer_comment');
             $table->timestamps();
         });
     }
