@@ -36,11 +36,6 @@ class ProductController extends Controller
         return to_route('products.index')->with('success', 'Товар создан успешно');
     }
 
-    public function show(Product $product)
-    {
-        return ProductResource::make($product);
-    }
-
     public function edit(Product $product)
     {
         return Inertia::render('Product/Edit', [
@@ -56,7 +51,7 @@ class ProductController extends Controller
         return to_route('products.index')->with('success', 'Товар обновлен успешно');
     }
 
-    public function destroy(Product $product)
+    public function delete(Product $product)
     {
         $product->delete();
 
